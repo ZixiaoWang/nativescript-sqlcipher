@@ -1,0 +1,10 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+# platform :ios, '10.3'
+
+# ignore all warnings from all pods
+inhibit_all_warnings!
+
+# install FMDB and FMDB/SQLCipher
+pod 'FMDB', '~> 2.6.2'
+pod 'FMDB/SQLCipher'

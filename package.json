@@ -1,0 +1,27 @@
+{
+  "name": "nativescript-sqlcipher",
+  "version": "1.0.0",
+  "description": "A Sqlcipher plugin for nativescript application. Inspired by nativescript-sqlite module.",
+  "main": "",
+  "repository": {
+    "type": "git",
+    "url": "git"
+  },
+  "keywords": [
+    "Nativescript",
+    "Sqlcipher",
+    "Sqlite",
+    "iOS",
+    "Android",
+    "Javascript"
+  ],
+  "nativescript": {
+    "platforms": {
+      "android": "1.4.0",
+      "ios": "1.4.0"
+    }
+  },
+  "scripts":{},
+  "author": "Jacky",
+  "license": "MIT"
+}
