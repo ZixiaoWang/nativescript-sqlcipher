@@ -5,7 +5,7 @@
   "main": "",
   "repository": {
     "type": "git",
-    "url": "git"
+    "url": "https://github.com/ZixiaoWang/nativescript-sqlcipher"
   },
   "keywords": [
     "Nativescript",
