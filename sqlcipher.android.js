@@ -1,11 +1,11 @@
 /**************************************************************************************
- * (c) 2015, 2016, Master Technology
- * Licensed under the MIT license or contact me for a support, changes, enhancements,
- * and/or if you require a commercial licensing
- *
- * Any questions please feel free to email me or put a issue up on github
- * Nathan@master-technology.com                           http://nativescript.tools
- * Version 0.1.4 - Android
+ * MIT Lisence
+ * If there's any issues, please feel free to contact me under my github page
+ * https://github.com/ZixiaoWang/nativescript-sqlcipher
+ * 
+ * Many thanks to Master Technology
+ * Link to Nativescript-sqlite
+ * https://github.com/ZixiaoWang/nativescript-sqlcipher
  *************************************************************************************/
 
 "use strict";
