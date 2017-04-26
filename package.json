@@ -17,8 +17,8 @@
   ],
   "nativescript": {
     "platforms": {
-      "android": "1.4.0",
-      "ios": "1.4.0"
+      "android": "2.5.0",
+      "ios": "2.5.0"
     }
   },
   "scripts":{},
