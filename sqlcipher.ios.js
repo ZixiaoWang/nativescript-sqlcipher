@@ -611,7 +611,7 @@ Database.prototype._getNativeResult = function(statement, column) {
     var resultType = sqlite3_column_type(statement, column);
     switch (resultType) {
         case 1: // Int
-            return sqlite3_column_int(statement, column);
+            return sqlite3_column_int64(statement, column);
         case 2: // Float
             return sqlite3_column_double(statement, column);
         case 3: // Text
