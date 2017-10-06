@@ -33,3 +33,6 @@ If property key is missing, or in a wrong format. Database would not be encrypte
       alert('Database creation failed.');
     })
 ```
+
+### Update Log
+Added all updates to sqlcipher.ios.js from [NathanaelA/Nativescript-Sqlite](https://github.com/NathanaelA/nativescript-sqlite/blob/master/sqlite.ios.js).  

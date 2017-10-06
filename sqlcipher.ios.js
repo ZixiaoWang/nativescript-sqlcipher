@@ -1,11 +1,11 @@
 /************************************************************************************
- * (c) 2015, 2016 Master Technology
+ * (c) 2015-2017 Master Technology
  * Licensed under the MIT license or contact me for a support, changes, enhancements,
  * and/or if you require a commercial licensing
  *
  * Any questions please feel free to email me or put a issue up on github
  * Nathan@master-technology.com                           http://nativescript.tools
- * Version 0.1.3 - iOS
+ * Version 0.1.6 - iOS
  ***********************************************************************************/
 
 "use strict";
@@ -13,7 +13,7 @@ var fs = require('file-system');
 
 /* jshint undef: true, camelcase: false */
 /* global Promise, NSFileManager, NSBundle, NSString, interop, sqlite3_open_v2, sqlite3_close, sqlite3_prepare_v2, sqlite3_step,
- sqlite3_finalize, sqlite3_bind_null, sqlite3_bind_text, sqlite3_column_type, sqlite3_column_int, sqlite3_key, strlen,
+ sqlite3_finalize, sqlite3_bind_null, sqlite3_bind_text, sqlite3_column_type, sqlite3_column_int,
  sqlite3_column_double, sqlite3_column_text,  sqlite3_column_count, sqlite3_column_name */
 
 
@@ -90,13 +90,17 @@ function Database(dbname, options, callback) {
     return new Promise(function (resolve, reject) {
         var error;
         try {
+        	var flags = 0;
+        	if (typeof options.iosFlags !== 'undefined') {
+        		flags = options.iosFlags;
+			}
+
             self._db = new interop.Reference();
-            self._pointer = self._db;
             // SQLITE_OPEN_FULLMUTEX = 65536, SQLITE_OPEN_CREATE = 4, SQLITE_OPEN_READWRITE = 2 --- 4 | 2 | 65536 = 65542
             if (options && options.readOnly) {
-                error = sqlite3_open_v2(dbname, self._db, 65536, null);
+                error = sqlite3_open_v2(dbname, self._db, 65536 | flags, null);
             } else {
-                error = sqlite3_open_v2(dbname, self._db, 65542, null);
+                error = sqlite3_open_v2(dbname, self._db, 65542 | flags, null);
             }
             self._db = self._db.value;
         } catch (err) {
@@ -151,7 +155,7 @@ Database.prototype.version = function(valueOrCallback) {
     } else if (!isNaN(valueOrCallback+0)) {
         return this.execSQL('PRAGMA user_version='+(valueOrCallback+0).toString());
     } else {
-        return this.get('PRAGMA user_version', Database.RESULTSASARRAY);
+        return this.get('PRAGMA user_version', undefined, undefined, Database.RESULTSASARRAY);
     }
 };
 
@@ -162,14 +166,6 @@ Database.prototype.version = function(valueOrCallback) {
 Database.prototype.isOpen = function() {
     return this._isOpen;
 };
-
-/***
- * Get database pointer 
- * @returns {pointer} 
- */
-Database.prototype.getPointer = function() {
-    return this._pointer;
-}
 
 /***
  * Gets/Sets whether you get Arrays or Objects for the row values
@@ -622,7 +618,7 @@ Database.prototype._getNativeResult = function(statement, column) {
             //noinspection JSUnresolvedFunction
             return NSString.stringWithUTF8String(sqlite3_column_text(statement, column)).toString();
         case 4: // Blob
-            return null; // TODO: We don't currently support Blobs on iOS
+            return NSData.dataWithBytesLength(sqlite3_column_blob(statement, column), sqlite3_column_bytes(statement, column));
         case 5: // Null
             return null;
         default:
@@ -644,7 +640,7 @@ Database.prototype._getStringResult = function(statement, column) {
             //noinspection JSUnresolvedFunction
             return NSString.stringWithUTF8String(sqlite3_column_text(statement, column)).toString();
         case 4: // Blob
-            return null; // TODO: We don't currently support Blobs on iOS
+            return NSData.dataWithBytesLength(sqlite3_column_blob(statement, column), sqlite3_column_bytes(statement, column));
         case 5: // Null
             return null;
         default:
@@ -807,4 +803,3 @@ Database.VALUESARENATIVE = 4;
 Database.VALUESARESTRINGS = 8;
 
 module.exports = Database;
-
