@@ -4,7 +4,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 # ignore all warnings from all pods
 inhibit_all_warnings!
+use_frameworks!
 
 # install FMDB and FMDB/SQLCipher
-pod 'FMDB', '~> 2.6.2'
-pod 'FMDB/SQLCipher'
+pod 'FMDB', :git => 'https://github.com/BayanLabs/fmdb.git', :commit => 'eea8a3341183ccf6ed69836ca493240ffc746154'

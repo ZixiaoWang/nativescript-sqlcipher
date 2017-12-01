@@ -35,4 +35,7 @@ If property key is missing, or in a wrong format. Database would not be encrypte
 ```
 
 ### Update Log
+##### 01 Dec 2017
+Fixed Compiling Error in Xcode 9
+##### 06 Oct 2017
 Added all updates to sqlcipher.ios.js from [NathanaelA/Nativescript-Sqlite](https://github.com/NathanaelA/nativescript-sqlite/blob/master/sqlite.ios.js).  
